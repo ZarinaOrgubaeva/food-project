@@ -2,9 +2,11 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import {
   deleteBasketItem,
+  submiteOrder,
   updateBasketItem,
 } from "../../store/basket/basketSlice";
-import { Modal } from "../UI/Modal";
+import { uiActions } from "../../store/UI/uiSlice";
+import { Modal, MuiModal } from "../UI/Modal";
 import { BasketItem } from "./BasketItem";
 import { TotalAmount } from "./TotalAmount";
 export const Basket = ({ onClose }) => {
@@ -23,32 +25,60 @@ export const Basket = ({ onClose }) => {
   const getTotalPrice = () => {
     return items.reduce((sum, { price, amount }) => sum + amount * price, 0);
   };
+
+  const orderSubmiteHandler = async () => {
+    try {
+      await dispatch(
+        submiteOrder({
+          orderData: { items },
+        })
+      ).unwrap();
+      dispatch(
+        uiActions.showSnakebar({
+          severity: "success",
+          message: "Order completed successfully!",
+        })
+      );
+      onClose();
+    } catch (error) {
+      dispatch(
+        uiActions.showSnakebar({
+          severity: "error",
+          message: "Order failed, try again later",
+        })
+      );
+    } finally {
+      onClose();
+    }
+  };
   return (
-    <Modal>
-      <Content>
-        {items.length ? (
-          <FixedHeightContainer>
-            {items.map((item) => {
-              return (
-                <BasketItem
-                  key={item._id}
-                  counterPluz={() => counterPluz(item._id, item.amount)}
-                  counterMinus={() => counterMinus(item._id, item.amount)}
-                  title={item.title}
-                  price={item.price}
-                  amount={item.amount}
-                />
-              );
-            })}
-          </FixedHeightContainer>
-        ) : null}
-        <TotalAmount
-          price={getTotalPrice()}
-          onClose={onClose}
-          onOrder={() => {}}
-        />
-      </Content>
-    </Modal>
+    <>
+      <MuiModal onClose={onClose} open={onClose}>
+        <Content>
+          {items.length ? (
+            <FixedHeightContainer>
+              {items.map((item) => {
+                return (
+                  <BasketItem
+                    key={item._id}
+                    counterPluz={() => counterPluz(item._id, item.amount)}
+                    counterMinus={() => counterMinus(item._id, item.amount)}
+                    title={item.title}
+                    price={item.price}
+                    amount={item.amount}
+                  />
+                );
+              })}
+            </FixedHeightContainer>
+          ) : null}
+          <TotalAmount
+            price={getTotalPrice()}
+            onClose={onClose}
+            onOrder={orderSubmiteHandler}
+          />
+        </Content>
+      </MuiModal>
+    </>
   );
 };
 
