@@ -1,9 +1,10 @@
 import { memo, useState } from "react";
-import styled from "styled-components";
+import { styled } from "@mui/system";
 import { ReactComponent as PlusIcon } from "../../../assets/icons/pluzIcon.svg";
 import Button from "../../../UI/Button";
 import { useDispatch } from "react-redux";
 import { addToBasket } from "../../../../store/basket/basketSlice";
+import { IconButton, TextField } from "@mui/material";
 export const MealItemForm = ({ id, title, price }) => {
   const dispatch = useDispatch();
   const [amount, setAmount] = useState(1);
@@ -24,14 +25,18 @@ export const MealItemForm = ({ id, title, price }) => {
     <StyledForm onSubmit={submitHandler}>
       <InputContainer>
         <label htmlFor={id}>Amount</label>
-        <StyledInput
+      </InputContainer>
+      <InputContainer>
+        <StyledTextField
+          id={id}
+          label=""
+          type="number"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          size="small"
           value={amount}
           onChange={amountChangehandler}
-          type="number"
-          id={id}
-          min={1}
-          // defaultValue={1}
-          max={5}
         />
       </InputContainer>
       <Button>
@@ -42,30 +47,29 @@ export const MealItemForm = ({ id, title, price }) => {
   );
 };
 memo(MealItemForm);
-const StyledForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-`;
-const InputContainer = styled.div`
-  margin-bottom: 12px;
-  label {
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 27px;
-    color: #222222;
-  }
-`;
-const StyledInput = styled.input`
-  border: 1px solid #d6d6d6;
-  width: 60px;
-  height: 32px;
-  border-radius: 6px;
-  margin-left: 20px;
-  padding: 4px 12px;
-  /* outline: auto; */
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
-  color: #222222;
-`;
+const StyledTextField = styled(TextField)(() => ({
+  "&.MuiTextField-root": {
+    width: "70px",
+  },
+  "&..MuiOutlinedInput-input": {
+    padding: "5px 10px",
+    fontSize: "14px",
+  },
+}));
+const StyledForm = styled("form")(() => ({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "flex-end",
+}));
+
+const InputContainer = styled("div")(() => ({
+  marginBottom: "12px",
+  label: {
+    fontWeight: "600",
+    fontSize: "18px",
+    lineHeight: "27px",
+    color: "#222222",
+  },
+}));
+
+

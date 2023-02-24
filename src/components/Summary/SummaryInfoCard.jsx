@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import {styled} from "@mui/system";
 const SummaryInfoCard = () => {
   return (
     <Card>
@@ -14,29 +14,32 @@ const SummaryInfoCard = () => {
     </Card>
   );
 };
-const Card = styled.div`
-  position: absolute;
-  width: 854px;
-  height: 270px;
-  left: 293px;
-  top: 358px;
-  padding: 36px 40px;
-  background: #383838;
-  box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.3);
-  border-radius: 16px;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
-  text-align: center;
-  color: #ffffff;
-  margin-bottom: 20px;
-`;
-const StyledtagH2 = styled.h2`
-  text-align: center;
-  font-weight: 600;
-  font-size: 36px;
-  line-height: 54px;
-  color: #ffffff;
-  margin-bottom: 28px;
-`;
+const Card = styled('div')(()=>({
+  position: "absolute",
+  width: "854px",
+  height: "270px",
+  left: "293px",
+  top: "358px",
+  padding: "36px 40px",
+  background: "#383838",
+  boxShadow: "0px 6px 16px rgba(0, 0, 0, 0.3)",
+  borderRadius: "16px",
+  fontWeight: "500",
+  fontSize: "16px",
+  lineHeight: "24px",
+  textAlign: "center",
+  color: "#ffffff",
+  marginBottom: "20px",
+}))
+ 
+
+const StyledtagH2 = styled('h2')(()=>({
+  textAlign: "center",
+  fontWeight: "600",
+  fontSize: "36px",
+  lineHeight: "54px",
+  color: "#ffffff",
+  marginBottom: "28px",
+}))
+  
 export default SummaryInfoCard;

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import styled from "styled-components";
+import {styled} from "@mui/system";
 import {
   deleteBasketItem,
   submiteOrder,
@@ -82,12 +82,15 @@ export const Basket = ({ onClose }) => {
   );
 };
 
-const Content = styled.div`
-  width: 100%;
-  height: 100%;
-  padding: 1.5rem 1rem;
-`;
-const FixedHeightContainer = styled.div`
-  max-height: 228px;
-  overflow-y: scroll;
-`;
+const Content = styled('div')(()=>({
+  width: "100%",
+  height: "100%",
+  padding: "1.5rem 1rem",
+}))
+  
+const FixedHeightContainer = styled('div')(()=>({
+  maxHeight: "228px",
+  overflowY: "scroll"
+}))
+  
+

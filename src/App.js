@@ -2,7 +2,7 @@ import { Header } from "./components/Header/Header";
 import { Summary } from "./components/Summary/Summary";
 import { Meals } from "./components/Meals/Meals";
 import { Basket } from "./components/Basket/Basket";
-import styled from "styled-components";
+import {styled} from "@mui/system";
 import { useState } from "react";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import { store } from "./store";
@@ -41,6 +41,8 @@ const App = () => {
   );
 };
 export default App;
-const Content = styled.div`
-  margin-top: 101px;
-`;
+const Content = styled('div')(()=>({
+  marginTop: '101px'
+}))
+  
+

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import {styled} from "@mui/system";
 import Button from "../UI/Button";
 import { ReactComponent as PlusSgv } from "../assets/icons/plus.svg";
 import { ReactComponent as MinusSvg } from "../assets/icons/minus.svg";
@@ -38,50 +38,57 @@ export const BasketItem = ({
   );
 };
 
-const Container = styled.div`
-  padding: 24px 0;
-  width: 100%;
-  border-bottom: 1px solid #d6d6d6;
-`;
-const Title = styled.p`
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 30px;
-  color: #222222;
-  margin: 0;
-  margin-bottom: 0 0 12px 0;
-`;
-const Price = styled.p`
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 27px;
-  color: #ad5502;
-`;
+const Container = styled('div')(()=>({
+  padding: "24px 0",
+  width: "100%",
+  borderBottom: "1px solid #d6d6d6",
+}))
+  
+const Title = styled('p')(()=>({
+  fontWeight: "600",
+  fontSize: "20px",
+  lineHeight: "30px",
+  color: "#222222",
+  margin: "0",
+  marginBottom: "0 0 12px 0",
+}))
+  
+const Price = styled('p')(()=>({
+  fontWeight: "600",
+  fontSize: "18px",
+  lineHeight: "27px",
+  color: "#ad5502"
+}))
+  
 
-const Amount = styled.span`
-  border: 1px solid #d6d6d6;
-  border-radius: 6px;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
-  color: #222222;
-  padding: 6px 14px;
-  display: block;
-`;
-const PriceAndAmountContainer = styled.div`
-  display: flex;
-  align-items: center;
-  width: 153px;
-  justify-content: space-between;
-`;
+const Amount = styled('span')(()=>({
+  border: "1px solid #d6d6d6",
+  borderRadius: "6px",
+  fontWeight: "500",
+  fontSize: "16px",
+  lineHeight: "24px",
+  color: "#222222",
+  padding: "6px 14px",
+  display: "block",
+}))
+  
+const PriceAndAmountContainer = styled('div')(()=>({
+  display: "flex",
+  alignItems: "center",
+  width: "153px",
+  justifyContent: "space-between"
+}))
 
-const CounterContainer = styled.div`
-  display: flex;
-  gap: 14px;
-`;
-const Content = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-right: 30px;
-`;
+const CounterContainer = styled('div')(()=>({
+  display: "flex",
+  gap: "14px"
+}))
+  
+const Content = styled('div')(()=>({
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  marginRight: "30px"
+}))
+ 
+
