@@ -40,7 +40,7 @@ const StyledTitle = styled("h4")(() => ({
   fontWeight: "600",
   fontSize: "18px",
   lineHeight: "27px",
-  color: "#222222",
+  color: "#ffff",
 }));
 
 const StyledText = styled("p")(() => ({
@@ -48,6 +48,6 @@ const StyledText = styled("p")(() => ({
   fontWeight: "400",
   fontSize: "16px",
   lineHeight: "24px",
-  color: "#222222",
+  color: "#ffff",
   margin: "4px 0",
 }));

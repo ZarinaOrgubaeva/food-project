@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  themeMode: "light",
   snakebar: {
     isOpen: false,
     message: "",
@@ -18,6 +19,9 @@ export const uiSlice = createSlice({
     },
     closeSnakebar(state) {
       state.snakebar = initialState.snakebar;
+    },
+    changeTheme(state, action) {
+      state.themeMode = action.payload;
     },
   },
 });

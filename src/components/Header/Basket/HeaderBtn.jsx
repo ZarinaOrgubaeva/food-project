@@ -1,5 +1,6 @@
 import { Button } from "@mui/material";
 import { styled } from "@mui/system";
+import { getTheme } from "../../../lib/constants/theme";
 import { ReactComponent as BasketIcon } from "../../assets/icons/Basket-icon.svg";
 const BasketBtn = ({ count, ...restProps }) => {
   return (
@@ -12,9 +13,9 @@ const BasketBtn = ({ count, ...restProps }) => {
 };
 export default BasketBtn;
 //style
-const StyledButton = styled(Button)(() => ({
+const StyledButton = styled(Button)(({theme}) => ({
   "&": {
-    background: "#5a1f08",
+    background: theme.palette.primary.dark,
     borderRadius: "30px",
     padding: "12px 32px",
     fontWeight: "600",
@@ -24,10 +25,10 @@ const StyledButton = styled(Button)(() => ({
     display: "flex",
     alignItems: "center",
     "&:hover": {
-      backgroundColor: "#2c0d00",
+      backgroundColor: theme.palette.primary.main,
     },
     "&:hover > #counter": {
-      backgroundColor: "#a73a0b",
+      backgroundColor: theme.palette.primary.dark,
     },
     "&.bump": {
       animation: "bump 300ms ease-out",
