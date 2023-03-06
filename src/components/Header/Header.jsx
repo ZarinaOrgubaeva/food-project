@@ -1,7 +1,6 @@
 import { styled } from "@mui/system";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import styled from "styled-components";
 import { getBasket } from "../../store/basket/basketSlice";
 import BasketBtn from "./Basket/HeaderBtn";
 import { uiActions } from "../../store/UI/uiSlice";
@@ -43,16 +42,14 @@ export const Header = ({ onShowBasket }) => {
         onClick={onShowBasket}
         count={calculateTotalAmount()}
       ></BasketBtn>
-      <Button onClick={changeThemeHandler}
-      sx={{color: "white"}}
-     >
+      <Button onClick={changeThemeHandler} sx={{ color: "white" }}>
         {theme === "Light" ? "Turn dark mode!" : "Turn light mode"}
       </Button>
     </Container>
   );
 };
 //style
-const Container = styled("header")(({theme}) => ({
+const Container = styled("header")(({ theme }) => ({
   "&": {
     width: "100%",
     position: "fixed",

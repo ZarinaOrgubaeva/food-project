@@ -1,8 +1,8 @@
 // import { createPortal } from "react-dom";
 // import styled from "styled-components";
 
-import styled from "@emotion/styled";
-import { Button, Modal, Typography } from "@mui/material";
+
+import { Modal, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 
 // const BackDrop = ({ onClose }) => {
@@ -70,9 +70,9 @@ const style = {
   borderRadius: "14px",
   boxShadow: "0 2px 8px rgba(0, 0, 0, 0.25)",
   zIndex: "30",
-  animation: "slide-down 300ms ease-out forwards",
-  width: "40rem",
-  left: "calc(50% - 20rem)",
+  // animation: "slide-down 300ms ease-out forwards",
+  // width: "40rem",
+  // left: "calc(50% - 20rem)",
 };
 
 export const MuiModal = ({ onClose, children, open }) => {

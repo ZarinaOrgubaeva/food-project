@@ -6,7 +6,7 @@ import {
   updateBasketItem,
 } from "../../store/basket/basketSlice";
 import { uiActions } from "../../store/UI/uiSlice";
-import { Modal, MuiModal } from "../UI/Modal";
+import { MuiModal } from "../UI/Modal";
 import { BasketItem } from "./BasketItem";
 import { TotalAmount } from "./TotalAmount";
 export const Basket = ({ onClose }) => {

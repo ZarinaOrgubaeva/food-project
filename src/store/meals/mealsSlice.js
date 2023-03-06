@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { fetchApi } from "../../lib/fetchApi";
+import { mealsGet } from "../../api/foodService";
 
 export const mealsActionsTypes = {
   GET_MEALS_SUCCESS: "GET_MEALS_SUCCESS",
@@ -37,9 +37,9 @@ export const mealsAction = mealsSlice.actions;
 
 export const getMeals = createAsyncThunk(
   "meals/getMeals",
-  async (payload, { dispatch, rejectWithValue }) => {
+  async ({ rejectWithValue }) => {
     try {
-      const { data } = await fetchApi("foods");
+      const { data } = await mealsGet();
       return data;
     } catch (error) {
       return rejectWithValue("Failed to load meals");

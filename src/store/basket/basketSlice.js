@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { deleteBasketItems, getBasketMeals, postAddToBasket, putUpdateBasket } from "../../api/foodService";
 import { fetchApi } from "../../lib/fetchApi";
-
 export const basketActionsTypes = {
   ADD_ITEM_SUCCESS: " ADD_ITEM_SUCCESS",
   GET_BASKET_SUCCESS: "GET_BASKET_SUCCESS",
@@ -25,9 +25,9 @@ export const basketSlice = createSlice({
 export const basketAction = basketSlice.actions;
 export const getBasket = createAsyncThunk(
   "basket/getBasket",
-  async (payload, { dispatch, rejectWithValue }) => {
+  async ( { rejectWithValue }) => {
     try {
-      const { data } = await fetchApi("basket");
+      const { data } = await getBasketMeals();
       return data.items;
     } catch (error) {
       return rejectWithValue("Failed to load meals");
@@ -38,10 +38,7 @@ export const addToBasket = createAsyncThunk(
   "basket/addToBasket",
   async (newItem, { dispatch, rejectWithValue }) => {
     try {
-      await fetchApi(`foods/${newItem.id}/addToBasket`, {
-        method: "POST",
-        body: { amount: newItem.amount },
-      });
+      await postAddToBasket(newItem);
       dispatch(getBasket());
     } catch (error) {
       return rejectWithValue("Failed to load meals");
@@ -53,10 +50,7 @@ export const updateBasketItem =
   ({ id, amount }) =>
   async (dispatch) => {
     try {
-      await fetchApi(`basketItem/${id}/update`, {
-        method: "PUT",
-        body: { amount },
-      });
+      await putUpdateBasket(id,amount);
       dispatch(getBasket());
     } catch (error) {
       alert("error", error);
@@ -64,9 +58,7 @@ export const updateBasketItem =
   };
 export const deleteBasketItem = (id) => async (dispatch) => {
   try {
-    await fetchApi(`basketItem/${id}/delete`, {
-      method: "DELETE",
-    });
+    await deleteBasketItems(id);
     dispatch(getBasket());
   } catch (error) {
     alert("error", error);
@@ -75,10 +67,7 @@ export const deleteBasketItem = (id) => async (dispatch) => {
 
 export const submiteOrder = createAsyncThunk(
   "basket/submiteOrder",
-  async (
-    { orderData },
-    { dispatch, rejectWithValue }
-  ) => {
+  async ({ orderData }, { dispatch, rejectWithValue }) => {
     try {
       await fetchApi(`https://jsonplaceholder.typicode.com/posts`, {
         method: "POST",
