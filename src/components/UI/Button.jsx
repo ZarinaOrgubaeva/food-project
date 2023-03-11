@@ -1,3 +1,4 @@
+import { Button as MuiButton } from "@mui/material";
 import { styled } from "@mui/system";
 
 const Button = ({
@@ -24,17 +25,20 @@ const getColor = (props) => {
 const getRadius = (props) => {
   return props.boderStyle === "rounded" ? "20px" : "6px";
 };
-const StyledButton = styled("button")(() => ({
-  background: `${getBackgruondColor}`,
+const StyledButton = styled(MuiButton, {
+  shouldForwardProp: (propName) => propName !== "boderStyle" && 'variant'
+  // shouldForwardProp: (propName) => propName !== "variant",
+})((variant, boderStyle) => ({
+  background: getBackgruondColor(variant),
   backgroundColor: "#993108",
-  borderRadius: `${getRadius}`,
+  borderRadius: getRadius(variant),
   padding: "0.625rem 2rem",
   fontWeight: "600",
   fontSize: "1rem",
   lineHeight: "1.5rem",
   textAlign: "center",
-  color: `${getColor}`,
-  border: `${getBoder}`,
+  color: getColor(variant),
+  border: getBoder(variant),
   cursor: "pointer",
   ":hover": {
     background: "#7e2a0a",

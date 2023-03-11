@@ -1,15 +1,24 @@
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { styled } from "@mui/system";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { getBasket } from "../../store/basket/basketSlice";
 import BasketBtn from "./Basket/HeaderBtn";
 import { uiActions } from "../../store/UI/uiSlice";
-import { Button } from "@mui/material";
+import Button from "../UI/Button";
 export const Header = ({ onShowBasket }) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const isAuthorized = useSelector((state) => state.auth.isAuthorized);
   let items = useSelector((state) => state.basket.items);
   const theme = useSelector((state) => state.ui.themeMode);
   const [animationClass, setAnimationClass] = useState("");
+  const BtnNavigate = () => {
+    navigate("/singIn");
+  };
+  const singOutHandler = () => {
+    navigate("/singIn");
+  };
   const changeThemeHandler = () => {
     const themeMode = theme === "Light" ? "dark" : "Light";
     dispatch(uiActions.changeTheme(themeMode));
@@ -27,7 +36,7 @@ export const Header = ({ onShowBasket }) => {
   useEffect(() => {
     setAnimationClass("bump");
     const id = setTimeout(() => {
-      setAnimationClass(" ");
+      setAnimationClass("");
     }, 300);
     return () => {
       clearTimeout(id);
@@ -42,9 +51,14 @@ export const Header = ({ onShowBasket }) => {
         onClick={onShowBasket}
         count={calculateTotalAmount()}
       ></BasketBtn>
-      <Button onClick={changeThemeHandler} sx={{ color: "white" }}>
+      <Button onClick={changeThemeHandler}>
         {theme === "Light" ? "Turn dark mode!" : "Turn light mode"}
       </Button>
+      {isAuthorized ? (
+        <Button onClick={singOutHandler}> Sing out</Button>
+      ) : (
+        <Button onClick={BtnNavigate}>Sing In</Button>
+      )}
     </Container>
   );
 };
