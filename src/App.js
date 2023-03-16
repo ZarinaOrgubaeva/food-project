@@ -7,10 +7,12 @@ import { SnakeBar } from "./components/UI/SnakeBar";
 import { uiActions } from "./store/UI/uiSlice";
 import { AppRoutes } from "./routes/Routes";
 import { BrowserRouter } from "react-router-dom";
+import { MealsItem } from "./pages/admin/MealsItem";
 function AppContent() {
   const dispatch = useDispatch();
   const themeMode = useSelector((state) => state.ui.themeMode);
   const snakebar = useSelector((state) => state.ui.snakebar);
+
   const theme = useMemo(() => {
     const currentTheme =
       themeMode === "Light"
@@ -29,6 +31,9 @@ function AppContent() {
         message={snakebar.message}
         onClose={() => dispatch(uiActions.closeSnakebar())}
       />
+      {/* <>
+        <MealsItem />
+      </> */}
     </ThemeProvider>
   );
 }

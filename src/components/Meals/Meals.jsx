@@ -2,7 +2,7 @@ import { memo, useEffect } from "react";
 import { styled } from "@mui/system";
 import { MealItem } from "./meal-item/MealItem";
 import { useDispatch, useSelector } from "react-redux";
-import { getMeals } from "../../store/meals/mealsSlice";
+import { getMeals } from "../../store/meals/meals.thunk";
 export const Meals = () => {
   const dispatch = useDispatch();
   const { meals = [], isLoading, error } = useSelector((state) => state.meals);

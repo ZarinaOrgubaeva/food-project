@@ -9,6 +9,7 @@ export const BasketItem = ({
   counterMinus,
   counterPluz,
 }) => {
+  console.log(title);
   return (
     <Container>
       <Title>{title}</Title>

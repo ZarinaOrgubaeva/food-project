@@ -6,6 +6,7 @@ const singUpRequest = (data) => {
 const singInRequest = (data) => {
   return axiosInstance.post("/auth/login", data);
 };
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   singUpRequest,
   singInRequest

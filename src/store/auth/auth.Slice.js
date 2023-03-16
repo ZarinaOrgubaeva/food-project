@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { STORAGE_KYES, UserRoles } from "../../lib/constants/common";
-import { singIn, singUp } from "./auth.thunk";
+import { singIn, singOut, singUp } from "./auth.thunk";
 
 const getInitialState = () => {
   const json = localStorage.getItem(STORAGE_KYES.AUTH);
@@ -45,6 +45,15 @@ const authSlice = createSlice({
           name: payload.user.name,
           email: payload.user.email,
           role: payload.user.role,
+        };
+      });
+      builder.addCase(singOut.fulfilled, (state) => {
+        state.isAuthorized = false;
+        state.token = "";
+        state.user = {
+          name: "",
+          email: "",
+          role: "",
         };
       });
     });

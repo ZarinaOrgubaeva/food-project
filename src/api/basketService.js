@@ -6,7 +6,7 @@ export const getBasketMeals = () => {
   return axiosInstance.get("/basket");
 };
 export const postAddToBasket = (newItem) => {
-  return axiosInstance.post(`/foods/${newItem.id}/addToBasket`, {
+  return axiosInstance.post(`foods/${newItem.id}/addToBasket`, {
     amount: newItem.amount,
   });
 };
@@ -18,3 +18,4 @@ export const putUpdateBasket = (id, basketAmount) => {
 export const deleteBasketItems = (id) => {
   return axiosInstance.delete(`/basketItem/${id}/delete`);
 };
+

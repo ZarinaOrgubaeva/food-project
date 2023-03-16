@@ -1,6 +1,5 @@
 import { Button } from "@mui/material";
 import { styled } from "@mui/system";
-import { getTheme } from "../../../lib/constants/theme";
 import { ReactComponent as BasketIcon } from "../../assets/icons/Basket-icon.svg";
 const BasketBtn = ({ count, ...restProps }) => {
   return (

@@ -58,6 +58,7 @@ export const Basket = ({ onClose }) => {
           {items.length ? (
             <FixedHeightContainer>
               {items.map((item) => {
+                console.log('itemss basket', item)
                 return (
                   <BasketItem
                     key={item._id}

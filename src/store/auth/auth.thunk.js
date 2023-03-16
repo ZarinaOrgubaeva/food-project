@@ -7,6 +7,7 @@ export const singUp = createAsyncThunk(
   async (payload, { rejectWithValue }) => {
     try {
       const { data } = await authService.singUpRequest(payload);
+      console.log(data, "data35346");
       const userData = data.data;
       localStorage.setItem(STORAGE_KYES.AUTH, JSON.stringify(userData));
       return userData;
@@ -28,3 +29,7 @@ export const singIn = createAsyncThunk(
     }
   }
 );
+
+export const singOut = createAsyncThunk("auth/singOut", async () => {
+  return localStorage.removeItem(STORAGE_KYES.AUTH);
+});

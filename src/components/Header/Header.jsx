@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { styled } from "@mui/system";
 import { useEffect, useState } from "react";
@@ -6,6 +6,7 @@ import { getBasket } from "../../store/basket/basketSlice";
 import BasketBtn from "./Basket/HeaderBtn";
 import { uiActions } from "../../store/UI/uiSlice";
 import Button from "../UI/Button";
+import { singOut } from "../../store/auth/auth.thunk";
 export const Header = ({ onShowBasket }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ export const Header = ({ onShowBasket }) => {
     navigate("/singIn");
   };
   const singOutHandler = () => {
+    dispatch(singOut());
     navigate("/singIn");
   };
   const changeThemeHandler = () => {
@@ -25,7 +27,7 @@ export const Header = ({ onShowBasket }) => {
   };
   useEffect(() => {
     dispatch(getBasket());
-  }, []);
+  }, [dispatch]);
 
   const calculateTotalAmount = () => {
     const sum = items.reduce((summa, item) => {
@@ -45,7 +47,9 @@ export const Header = ({ onShowBasket }) => {
 
   return (
     <Container>
-      <Logo>ReactMeals</Logo>
+      <Link to="/" style={{textDecoration: 'none'}}>
+        <Logo>ReactMeals</Logo>
+      </Link>
       <BasketBtn
         className={animationClass}
         onClick={onShowBasket}

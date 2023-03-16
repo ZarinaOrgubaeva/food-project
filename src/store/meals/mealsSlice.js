@@ -1,6 +1,5 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { mealsGet } from "../../api/foodService";
-
+import { createSlice } from "@reduxjs/toolkit";
+import { getMeals } from "./meals.thunk";
 export const mealsActionsTypes = {
   GET_MEALS_SUCCESS: "GET_MEALS_SUCCESS",
   GET_MEALS_STARTED: "GET_MEALS_STARTED",
@@ -31,18 +30,5 @@ export const mealsSlice = createSlice({
     });
   },
 });
-console.log(mealsSlice);
 
 export const mealsAction = mealsSlice.actions;
-
-export const getMeals = createAsyncThunk(
-  "meals/getMeals",
-  async ({ rejectWithValue }) => {
-    try {
-      const { data } = await mealsGet();
-      return data;
-    } catch (error) {
-      return rejectWithValue("Failed to load meals");
-    }
-  }
-);

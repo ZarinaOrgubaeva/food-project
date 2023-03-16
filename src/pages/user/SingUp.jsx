@@ -2,11 +2,12 @@ import styled from "@emotion/styled";
 import { Grid, TextField } from "@mui/material";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import Button from "../components/UI/Button";
-import { UserRoles } from "../lib/constants/common";
-import { singUp } from "../store/auth/auth.thunk";
+import { Link, useNavigate } from "react-router-dom";
+import Button from "../../components/UI/Button";
+import { UserRoles } from "../../lib/constants/common";
+import { singUp } from "../../store/auth/auth.thunk";
 export const SingUpPage = () => {
+  const navigate = useNavigate();
   const distapch = useDispatch();
   const singUpBtnHandler = ({ email, name, password }) => {
     const data = {
@@ -15,7 +16,9 @@ export const SingUpPage = () => {
       password,
       role: UserRoles.ADMIN,
     };
-    distapch(singUp(data));
+    distapch(singUp(data))
+      .unwrap()
+      .then(() => navigate("/"));
   };
 
   const formik = useFormik({
