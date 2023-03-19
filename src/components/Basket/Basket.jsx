@@ -2,13 +2,13 @@ import { useDispatch, useSelector } from "react-redux";
 import {styled} from "@mui/system";
 import {
   deleteBasketItem,
-  submiteOrder,
   updateBasketItem,
 } from "../../store/basket/basketSlice";
-import { uiActions } from "../../store/UI/uiSlice";
+import { uiActions } from "../../store/ui/uiSlice";
 import { MuiModal } from "../UI/Modal";
 import { BasketItem } from "./BasketItem";
 import { TotalAmount } from "./TotalAmount";
+import { orderSubmit } from "../../store/order/order.thunk";
 export const Basket = ({ onClose }) => {
   const dispatch = useDispatch();
   const items = useSelector((state) => state.basket.items);
@@ -29,9 +29,7 @@ export const Basket = ({ onClose }) => {
   const orderSubmiteHandler = async () => {
     try {
       await dispatch(
-        submiteOrder({
-          orderData: { items },
-        })
+        orderSubmit(getTotalPrice())
       ).unwrap();
       dispatch(
         uiActions.showSnakebar({
@@ -58,7 +56,6 @@ export const Basket = ({ onClose }) => {
           {items.length ? (
             <FixedHeightContainer>
               {items.map((item) => {
-                console.log('itemss basket', item)
                 return (
                   <BasketItem
                     key={item._id}

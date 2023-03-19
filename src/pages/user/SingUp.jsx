@@ -14,7 +14,7 @@ export const SingUpPage = () => {
       email,
       name,
       password,
-      role: UserRoles.ADMIN,
+      role: UserRoles.USER,
     };
     distapch(singUp(data))
       .unwrap()

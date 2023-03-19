@@ -22,7 +22,7 @@ export const MealsUpdate = ({ item, setEdit, onClose, onOpen }) => {
       await dispatch(editMeal(data)).unwrap();
       setEdit(false);
     } catch (error) {
-      console.log("eroor");
+     alert('error', error)
     }
   };
   const updateMealFormik = useFormik({

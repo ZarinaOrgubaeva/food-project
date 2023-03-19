@@ -4,10 +4,9 @@ import { store } from "./store";
 import { createTheme, ThemeProvider } from "@mui/material";
 import { darkTheme, LightTheme } from "./lib/constants/theme";
 import { SnakeBar } from "./components/UI/SnakeBar";
-import { uiActions } from "./store/UI/uiSlice";
+import { uiActions } from "./store/ui/uiSlice";
 import { AppRoutes } from "./routes/Routes";
 import { BrowserRouter } from "react-router-dom";
-import { MealsItem } from "./pages/admin/MealsItem";
 function AppContent() {
   const dispatch = useDispatch();
   const themeMode = useSelector((state) => state.ui.themeMode);
@@ -31,9 +30,6 @@ function AppContent() {
         message={snakebar.message}
         onClose={() => dispatch(uiActions.closeSnakebar())}
       />
-      {/* <>
-        <MealsItem />
-      </> */}
     </ThemeProvider>
   );
 }

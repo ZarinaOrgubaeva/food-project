@@ -21,7 +21,6 @@ export const getMeals = createAsyncThunk(
 export const postMeals = createAsyncThunk(
   "meals/postMeals",
   async (data, { dispatch, rejectWithValue }) => {
-    console.log(data, "dataPost");
     try {
       await mealsPostRequest(data);
       dispatch(getMeals());
@@ -35,15 +34,13 @@ export const deleteMeal = createAsyncThunk(
   "meals/deleteMeals",
   async (id, { dispatch, rejectWithValue }) => {
     try {
-      console.log("delete")
       await deleteMealsReq(id);
-     return dispatch(getMeals());
+      return dispatch(getMeals());
     } catch (error) {
       return rejectWithValue(error);
     }
   }
 );
-
 
 export const editMeal = createAsyncThunk(
   "meals/editMeals",

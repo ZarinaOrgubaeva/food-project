@@ -4,7 +4,7 @@ import { styled } from "@mui/system";
 import { useEffect, useState } from "react";
 import { getBasket } from "../../store/basket/basketSlice";
 import BasketBtn from "./Basket/HeaderBtn";
-import { uiActions } from "../../store/UI/uiSlice";
+import { uiActions } from "../../store/ui/uiSlice";
 import Button from "../UI/Button";
 import { singOut } from "../../store/auth/auth.thunk";
 export const Header = ({ onShowBasket }) => {
@@ -30,9 +30,7 @@ export const Header = ({ onShowBasket }) => {
   }, [dispatch]);
 
   const calculateTotalAmount = () => {
-    const sum = items.reduce((summa, item) => {
-      return summa + item.amount;
-    }, 0);
+    const sum = items.reduce((summa, item) => summa + item.amount, 0);
     return sum;
   };
   useEffect(() => {
@@ -47,7 +45,7 @@ export const Header = ({ onShowBasket }) => {
 
   return (
     <Container>
-      <Link to="/" style={{textDecoration: 'none'}}>
+      <Link to="/" style={{ textDecoration: "none" }}>
         <Logo>ReactMeals</Logo>
       </Link>
       <BasketBtn
@@ -55,6 +53,9 @@ export const Header = ({ onShowBasket }) => {
         onClick={onShowBasket}
         count={calculateTotalAmount()}
       ></BasketBtn>
+      {isAuthorized ? (
+        <Button onClick={() => navigate("/userOrder")}>My Orders</Button>
+      ) : null}
       <Button onClick={changeThemeHandler}>
         {theme === "Light" ? "Turn dark mode!" : "Turn light mode"}
       </Button>

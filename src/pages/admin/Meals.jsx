@@ -21,26 +21,17 @@ export const Meals = () => {
   const openModalHandler = () => {
     setOpenModal((prevState) => !prevState);
   };
-  const submitHandler = async ({ title, description, price }) => {
-    try {
-      const data = {
-        title,
-        description,
-        price,
-      };
-      await dispatch(postMeals(data));
-      console.log(data, "sfd");
-    } catch (error) {
-      console.log("errorrrrr", error);
-    }
+  const submitHandler = ({ title, description, price }) => {
+    const data = {
+      title,
+      description,
+      price,
+    };
+    dispatch(postMeals(data));
   };
 
-  const deleteMealHandler = async (id) => {
-    try {
-      await dispatch(deleteMeal(id));
-    } catch (error) {
-      console.log("error", error);
-    }
+  const deleteMealHandler = (id) => {
+    dispatch(deleteMeal(id));
   };
   const editHandler = (id) => {
     setEditMealId(id);

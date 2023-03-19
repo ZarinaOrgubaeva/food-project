@@ -7,6 +7,7 @@ import { Meals } from "../pages/admin/Meals";
 import { Orders } from "../pages/admin/Order";
 import { NotFound } from "../pages/NotFound";
 import { MealsPages } from "../pages/user/Meals";
+import { Order } from "../pages/user/order";
 import { SingInPage } from "../pages/user/SingIn";
 import { SingUpPage } from "../pages/user/SingUp";
 import { ProtectedRoute } from "./ProtectedRoute";
@@ -50,6 +51,16 @@ export const AppRoutes = () => {
           />
         }
       >
+        <Route
+          path="/userOrder"
+          element={
+            <ProtectedRoute
+              allowedRoles={allowedRoles([UserRoles.USER])}
+              fallBackPath={"/userOrder"}
+              component={Order}
+            />
+          }
+        ></Route>
         <Route
           index
           element={
